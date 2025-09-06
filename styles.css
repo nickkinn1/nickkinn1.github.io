@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: darkgray;
+}
+
+
+
+
+
+
+header{
+    text-align: center;
+    padding: 2rem 0rem;
+    font-size: 1.5rem;
+    background-color: black;
+    color: #f3f3f3;
+    text-transform: uppercase;
+}
+
+#headshot{
+    width: 20rem;
+    border-radius: 50%;
+    display: block;
+    margin: 5rem auto 0 auto;
+}
+
+main{
+    display: block;
+    width: 60%;
+    margin: 0rem auto;
+    font-size: 1.1rem;
+}
+
+.subtitle{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#list-section{
+    margin-top: 3rem;
+}
