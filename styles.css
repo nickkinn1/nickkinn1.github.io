@@ -4,42 +4,67 @@
 }
 
 body{
-    background-color: darkgray;
-}
-
-
-
-
-
-
-header{
-    text-align: center;
-    padding: 2rem 0rem;
-    font-size: 1.5rem;
-    background-color: black;
-    color: #f3f3f3;
-    text-transform: uppercase;
-}
-
-#headshot{
-    width: 20rem;
-    border-radius: 50%;
-    display: block;
-    margin: 5rem auto 0 auto;
-}
-
-main{
-    display: block;
-    width: 60%;
-    margin: 0rem auto;
-    font-size: 1.1rem;
+    background-color: #121212;
+    color: #121212;
 }
 
 .subtitle{
-    font-size: 1.2rem;
     font-weight: bold;
 }
 
-#list-section{
-    margin-top: 3rem;
+header{
+    color: #d3edee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin: 1rem auto 0rem auto;
+}
+
+header h1{
+    font-size: 2.4rem;
+}
+
+header p{
+    font-size: 1.2rem;
+}
+
+
+section{
+    background-color: #555879;
+    width: 50%;
+    margin: 7rem auto 0rem auto;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+section img{
+    width: 17rem;
+    border-radius: 50%;
+}
+
+section > div{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#favorite-movies{
+    margin-top: .5rem;
+    transform: translateX(1rem);
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100vw;
+    background-color: #262626;
+    padding: 1rem 0;
+    color: #c5c5c5;
+    font-weight: bold;
 }
