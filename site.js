@@ -1,3 +1,4 @@
+//Dynamic welcome message
 const hours = new Date().getHours() // get the current hour
 
 const isMorning = hours >= 4 && hours < 12 // is it morning?
@@ -26,7 +27,7 @@ welcomeDiv.append(p)
 
 
 
-
+//Populate about me section
 const aboutMe = "Hi, my name is Nick. I am currently attending FVTC for Web Devolopment and Design. I work as a server at Pullman's Resturaunt. Some of my hobbies are: creating, snowboarding, and coffee."
 const favoriteMovies = ["Madea", "The Conjuring", "Straight Outta Compton"]
 
@@ -38,3 +39,8 @@ favoriteMovies.forEach((movie) => {
     li.textContent = movie
     moviesUl.append(li)
 });
+
+
+
+//Secret message local storage.
+localStorage.setItem("It's a secret to everybody.", "Yo")
