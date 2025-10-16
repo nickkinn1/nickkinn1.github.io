@@ -51,12 +51,12 @@ localStorage.setItem("It's a secret to everybody.", "Yo")
 
 //Carousel
 const urls = [
-    'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/933964/pexels-photo-933964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/1251861/pexels-photo-1251861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/1370296/pexels-photo-1370296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-].map(url => { (new Image()).src = url; return url })
+    "imgs/doobie.jpg",
+    "imgs/philip.jpg",
+    "imgs/thirdworld.jpg",
+    "imgs/tyler.jpg",
+    "imgs/van.jpg"
+]
 
 const images = document.querySelectorAll('#carousel img')
 const prevButton = document.querySelector("#prev")
@@ -92,4 +92,53 @@ nextButton.addEventListener("click", () => {
     showImages()
 })
 
+
+
+
+
+
+//TODO LIST
+const addTodoButton = document.querySelector("#add-todo")
+const todoItemsDiv = document.querySelector("#todo-items")
+const todoInput = document.querySelector("#todo-input")
+
+const todoListKey = "todoList"
+
+
+const defaultToDoList = []
+
+const renderTodos = () => {
+    todoItemsDiv.innerHTML = ""
+    const storedList = JSON.parse(localStorage.getItem(todoListKey))
+
+    storedList.forEach(({ text, completed}) => {
+        const div = document.createElement("div")
+        div.classList.add("item")
+        div.innerHTML = `
+            <p>${text}</p>
+            <button>X</button>
+        `
+        todoItemsDiv.append(div)
+    })
+}
+
+if(localStorage.getItem(todoListKey)){
+    renderTodos()
+} else {
+    localStorage.setItem(todoListKey, JSON.stringify(defaultToDoList))
+}
+
+addTodoButton.addEventListener("click", () => {
+    const storedList = JSON.parse(localStorage.getItem(todoListKey))
+
+    storedList.push({
+        "text" : todoInput.value,
+        "completed" : false
+    })
+
+    localStorage.setItem(todoListKey, JSON.stringify(storedList))
+
+    renderTodos()
+    todoInput.value = ""
+})
 

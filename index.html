@@ -16,28 +16,44 @@
     </header>
   
     <section class="about-section">
-        <img src="/IMG_12552.JPEG" alt="Picture of Nick">
-        <div>
-            <p id="about-me"></p>
-
+        <div class="about-banner">
+            <img src="/IMG_12552.JPEG" alt="Picture of Nick">
             <div>
-                <p class="subtitle">Favorite Movies</p>
-                <ul id="favorite-movies">
-        
-                </ul>
+                <p id="about-me"></p>
+
+                <div>
+                    <p class="subtitle">Favorite Movies</p>
+                    <ul id="favorite-movies">
+            
+                    </ul>
+                </div>
             </div>
+        </div>
+    
+
+        <div id="carousel">
+            <img alt="Image 1">
+            <img alt="Image 2">
+            <img alt="Image 3">
+        </div>
+        <div id="buttons">
+            <img id="prev" src="imgs/arrowBack.svg" alt="Previous">
+            <img id="next" src="imgs/arrowForward.svg" alt="Next">
         </div>
     </section>
 
-    <div id="carousel">
-        <img alt="Image 1">
-        <img alt="Image 2">
-        <img alt="Image 3">
-    </div>
-    <div id="buttons">
-        <button id="prev">Previous</button>
-        <button id="next">Next</button>
-    </div>
+    <section class="todo-section">
+        <div id="todo-widget">
+            <h3>To-Do List</h3>
+            <div class="todo-form">
+                <input autocomplete="off" id="todo-input" type="text">
+                <button id="add-todo">Add</button>
+            </div>
+            <div id="todo-items">
+                
+            </div>
+        </div>
+    </section>
 
     <footer>
         <p>Nick Kinney | 2025</p>
