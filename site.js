@@ -107,17 +107,37 @@ const todoListKey = "todoList"
 
 const defaultToDoList = []
 
+const deleteTodo = (ID) => {
+    const storedList = JSON.parse(localStorage.getItem(todoListKey))
+    const updatedList = storedList.filter((item) => item.ID != ID)
+    console.log(updatedList)
+
+    localStorage.setItem(todoListKey, JSON.stringify(updatedList))
+
+    renderTodos()
+}
+
 const renderTodos = () => {
     todoItemsDiv.innerHTML = ""
     const storedList = JSON.parse(localStorage.getItem(todoListKey))
 
-    storedList.forEach(({ text, completed}) => {
+    storedList.forEach(({ ID, text, completed}) => {
         const div = document.createElement("div")
         div.classList.add("item")
-        div.innerHTML = `
-            <p>${text}</p>
-            <button>X</button>
-        `
+
+        const p = document.createElement("p")
+        p.textContent = text
+
+        const button = document.createElement("button")
+        button.textContent = "x"
+        button.value = ID
+
+        div.append(p, button)
+
+        button.addEventListener("click", () => {
+            deleteTodo(ID)
+        })
+
         todoItemsDiv.append(div)
     })
 }
@@ -132,6 +152,7 @@ addTodoButton.addEventListener("click", () => {
     const storedList = JSON.parse(localStorage.getItem(todoListKey))
 
     storedList.push({
+        "ID" : Date.now(),
         "text" : todoInput.value,
         "completed" : false
     })
@@ -141,4 +162,6 @@ addTodoButton.addEventListener("click", () => {
     renderTodos()
     todoInput.value = ""
 })
+
+
 
