@@ -1,167 +1,191 @@
-//Dynamic welcome message
-const hours = new Date().getHours() // get the current hour
+(async () => {
 
-const isMorning = hours >= 4 && hours < 12 // is it morning?
-const isAfternoon = hours >= 12 && hours < 17 // is it afternoon?
-const isEvening = hours >= 17 || hours < 4 // is it evening?
+    //Dynamic welcome message
+    const hours = new Date().getHours() // get the current hour
 
-let welcomeMessage = "Good Day"
+    const isMorning = hours >= 4 && hours < 12 // is it morning?
+    const isAfternoon = hours >= 12 && hours < 17 // is it afternoon?
+    const isEvening = hours >= 17 || hours < 4 // is it evening?
 
-if (isMorning) {
-    welcomeMessage = "Good Morning"
-} else if(isAfternoon){
-    welcomeMessage = "Good Afternoon" 
-} else if(isEvening) {
-    welcomeMessage = "Good Evening"
-} 
+    let welcomeMessage = "Good Day"
 
-welcomeMessage += " :)"
+    if (isMorning) {
+        welcomeMessage = "Good Morning"
+    } else if(isAfternoon){
+        welcomeMessage = "Good Afternoon" 
+    } else if(isEvening) {
+        welcomeMessage = "Good Evening"
+    } 
 
-const welcomeDiv = document.querySelector("#welcome")
+    welcomeMessage += " :)"
 
-const p = document.createElement("p")
-p.textContent = welcomeMessage
+    const welcomeDiv = document.querySelector("#welcome")
 
-welcomeDiv.append(p)
+    const p = document.createElement("p")
+    p.textContent = welcomeMessage
 
-
-
-
-//Populate about me section
-const aboutMe = "Hi, my name is Nick. I am currently attending FVTC for Web Devolopment and Design. I work as a server at Pullman's Resturaunt. Some of my hobbies are: creating, snowboarding, and coffee."
-const favoriteMovies = ["Madea", "The Conjuring", "Straight Outta Compton"]
-
-document.querySelector("#about-me").textContent = aboutMe
-
-const moviesUl = document.querySelector("#favorite-movies")
-favoriteMovies.forEach((movie) => {
-    const li = document.createElement("li")
-    li.textContent = movie
-    moviesUl.append(li)
-});
-
-
-
-//Secret message local storage.
-localStorage.setItem("It's a secret to everybody.", "Yo")
+    welcomeDiv.append(p)
 
 
 
 
+    //Populate about me section
+    const aboutMe = "Hi, my name is Nick. I am currently attending FVTC for Web Devolopment and Design. I work as a server at Pullman's Resturaunt. Some of my hobbies are: creating, snowboarding, and coffee."
+    const favoriteMovies = ["Madea", "The Conjuring", "Straight Outta Compton"]
 
-//Carousel
-const urls = [
-    "imgs/doobie.jpg",
-    "imgs/philip.jpg",
-    "imgs/thirdworld.jpg",
-    "imgs/tyler.jpg",
-    "imgs/van.jpg"
-]
+    document.querySelector("#about-me").textContent = aboutMe
 
-const images = document.querySelectorAll('#carousel img')
-const prevButton = document.querySelector("#prev")
-const nextButton = document.querySelector("#next")
+    const moviesUl = document.querySelector("#favorite-movies")
+    favoriteMovies.forEach((movie) => {
+        const li = document.createElement("li")
+        li.textContent = movie
+        moviesUl.append(li)
+    });
 
-let currentImage = 0
-const showImages = () => {
-    const offset = currentImage % urls.length
-    images.forEach((image, index) => {
-        const imageIndex = (index + offset + urls.length) % urls.length
-        image.src = urls[imageIndex]
-    })
-}
 
-showImages()
 
-setInterval(() => {
-    if(currentImage < urls.length) {
-        currentImage++
-    } else {
-        currentImage = 1;
+    //Secret message local storage.
+    localStorage.setItem("It's a secret to everybody.", "Yo")
+
+
+
+
+
+    //Carousel
+    const urls = [
+        "imgs/doobie.jpg",
+        "imgs/philip.jpg",
+        "imgs/thirdworld.jpg",
+        "imgs/tyler.jpg",
+        "imgs/van.jpg"
+    ]
+
+    const images = document.querySelectorAll('#carousel img')
+    const prevButton = document.querySelector("#prev")
+    const nextButton = document.querySelector("#next")
+
+    let currentImage = 0
+    const showImages = () => {
+        const offset = currentImage % urls.length
+        images.forEach((image, index) => {
+            const imageIndex = (index + offset + urls.length) % urls.length
+            image.src = urls[imageIndex]
+        })
     }
+
     showImages()
-}, 5000);
 
-prevButton.addEventListener("click", () => {
-    currentImage--
-    showImages()
-})
+    setInterval(() => {
+        if(currentImage < urls.length) {
+            currentImage++
+        } else {
+            currentImage = 1;
+        }
+        showImages()
+    }, 5000);
 
-nextButton.addEventListener("click", () => {
-    currentImage++
-    showImages()
-})
+    prevButton.addEventListener("click", () => {
+        currentImage--
+        showImages()
+    })
 
-
-
-
-
-
-//TODO LIST
-const addTodoButton = document.querySelector("#add-todo")
-const todoItemsDiv = document.querySelector("#todo-items")
-const todoInput = document.querySelector("#todo-input")
-
-const todoListKey = "todoList"
+    nextButton.addEventListener("click", () => {
+        currentImage++
+        showImages()
+    })
 
 
-const defaultToDoList = []
 
-const deleteTodo = (ID) => {
-    const storedList = JSON.parse(localStorage.getItem(todoListKey))
-    const updatedList = storedList.filter((item) => item.ID != ID)
-    console.log(updatedList)
 
-    localStorage.setItem(todoListKey, JSON.stringify(updatedList))
 
-    renderTodos()
-}
 
-const renderTodos = () => {
-    todoItemsDiv.innerHTML = ""
-    const storedList = JSON.parse(localStorage.getItem(todoListKey))
+    //TODO LIST
+    const addTodoButton = document.querySelector("#add-todo")
+    const todoItemsDiv = document.querySelector("#todo-items")
+    const todoInput = document.querySelector("#todo-input")
 
-    storedList.forEach(({ ID, text, completed}) => {
-        const div = document.createElement("div")
-        div.classList.add("item")
+    const todoListKey = "todoList"
 
-        const p = document.createElement("p")
-        p.textContent = text
 
-        const button = document.createElement("button")
-        button.textContent = "x"
-        button.value = ID
+    const defaultToDoList = []
 
-        div.append(p, button)
+    const deleteTodo = (ID) => {
+        const storedList = JSON.parse(localStorage.getItem(todoListKey))
+        const updatedList = storedList.filter((item) => item.ID != ID)
+        console.log(updatedList)
 
-        button.addEventListener("click", () => {
-            deleteTodo(ID)
+        localStorage.setItem(todoListKey, JSON.stringify(updatedList))
+
+        renderTodos()
+    }
+
+    const renderTodos = () => {
+        todoItemsDiv.innerHTML = ""
+        const storedList = JSON.parse(localStorage.getItem(todoListKey))
+
+        storedList.forEach(({ ID, text, completed}) => {
+            const div = document.createElement("div")
+            div.classList.add("item")
+
+            const p = document.createElement("p")
+            p.textContent = text
+
+            const button = document.createElement("button")
+            button.textContent = "x"
+            button.value = ID
+
+            div.append(p, button)
+
+            button.addEventListener("click", () => {
+                deleteTodo(ID)
+            })
+
+            todoItemsDiv.append(div)
+        })
+    }
+
+    if(localStorage.getItem(todoListKey)){
+        renderTodos()
+    } else {
+        localStorage.setItem(todoListKey, JSON.stringify(defaultToDoList))
+    }
+
+    addTodoButton.addEventListener("click", () => {
+        const storedList = JSON.parse(localStorage.getItem(todoListKey))
+
+        storedList.push({
+            "ID" : Date.now(),
+            "text" : todoInput.value,
+            "completed" : false
         })
 
-        todoItemsDiv.append(div)
-    })
-}
+        localStorage.setItem(todoListKey, JSON.stringify(storedList))
 
-if(localStorage.getItem(todoListKey)){
-    renderTodos()
-} else {
-    localStorage.setItem(todoListKey, JSON.stringify(defaultToDoList))
-}
-
-addTodoButton.addEventListener("click", () => {
-    const storedList = JSON.parse(localStorage.getItem(todoListKey))
-
-    storedList.push({
-        "ID" : Date.now(),
-        "text" : todoInput.value,
-        "completed" : false
+        renderTodos()
+        todoInput.value = ""
     })
 
-    localStorage.setItem(todoListKey, JSON.stringify(storedList))
-
-    renderTodos()
-    todoInput.value = ""
-})
 
 
 
+    //POKEMON API
+    const pokemonDiv = document.querySelector("#pokemon-div")
+    
+    const getRandomPokemon = async () => {
+        const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/1' + Math.floor(Math.random() * 150)
+
+        const res = await fetch(pokemonUrl)
+        const json = await res.json()
+        return json
+    }
+    
+    const renderPokemon = (pokemon) => {
+        const pokemonImg = document.createElement("img")
+        pokemonImg.src = pokemon.sprites.front_default
+        pokemonImg.alt = pokemon.name
+
+        pokemonDiv.append(pokemonImg)
+    }
+
+    renderPokemon(await getRandomPokemon())
+})()
