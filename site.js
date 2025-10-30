@@ -172,7 +172,7 @@
     const pokemonDiv = document.querySelector("#pokemon-div")
     
     const getRandomPokemon = async () => {
-        const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/1' + Math.floor(Math.random() * 150)
+        const pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/' + Math.floor(Math.random() * 150)
 
         const res = await fetch(pokemonUrl)
         const json = await res.json()
